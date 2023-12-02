@@ -3,12 +3,9 @@ fn transform_words_to_digits(line: &str) -> String {
 
     for (i, _) in line.chars().enumerate() {
         let letter = line.chars().nth(i).unwrap();
-        if letter.is_numeric() {
-            s.push(letter);
-            continue;
-        }
 
         match &line[i..] {
+            _ if letter.is_numeric() => s.push(letter),
             x if x.starts_with("one") => s.push('1'),
             x if x.starts_with("two") => s.push('2'),
             x if x.starts_with("three") => s.push('3'),
