@@ -18,7 +18,7 @@ fn transform_words_to_digits(line: &str) -> String {
                 _ => '\0',
             }
         })
-        .collect::<String>()
+        .collect()
 }
 
 fn get_number(line: &str) -> u32 {
@@ -26,7 +26,7 @@ fn get_number(line: &str) -> u32 {
     let first = digits.first().unwrap();
     let last = digits.last().unwrap();
 
-    format!("{}{}", first, last).parse::<u32>().unwrap()
+    format!("{}{}", first, last).parse().unwrap()
 }
 
 pub fn solve_part1(input: &[String]) -> u32 {
