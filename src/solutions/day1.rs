@@ -1,4 +1,4 @@
-fn transform_word_to_digits(line: &str) -> String {
+fn transform_words_to_digits(line: &str) -> String {
     let mut s = String::new();
 
     for (i, _) in line.chars().enumerate() {
@@ -43,7 +43,7 @@ pub fn solve_part1(input: &[String]) -> u32 {
 pub fn solve_part2(input: &[String]) -> u32 {
     input
         .iter()
-        .map(|s| transform_word_to_digits(s))
+        .map(|s| transform_words_to_digits(s))
         .map(|s| get_number(&s))
         .sum()
 }

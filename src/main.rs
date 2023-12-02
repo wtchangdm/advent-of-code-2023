@@ -11,7 +11,7 @@ struct Puzzle<T> {
 }
 
 fn get_content(path: &str) -> Vec<String> {
-    let file = File::open(path).unwrap_or_else(|_| panic!("failed openning file: {}", path));
+    let file = File::open(path).unwrap_or_else(|_| panic!("can't open file: {}", path));
 
     io::BufReader::new(file)
         .lines()
