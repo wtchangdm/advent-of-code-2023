@@ -88,7 +88,7 @@ pub fn solve_part2(input: &[String]) -> u32 {
         .iter()
         .map(|line| Game::from(line))
         .map(|game| game.max_colors())
-        .map(|r| r.red * r.green * r.blue)
+        .map(|round| round.red * round.green * round.blue)
         .sum()
 }
 
