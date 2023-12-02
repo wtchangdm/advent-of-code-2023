@@ -58,8 +58,8 @@ mod tests {
             .iter()
             .map(|x| x.to_string())
             .collect();
-        let answer = solve_part1(&input);
-        assert_eq!(answer, 142);
+
+        assert_eq!(solve_part1(&input), 142);
     }
 
     #[test]
@@ -76,7 +76,7 @@ mod tests {
         .iter()
         .map(|x| x.to_string())
         .collect();
-        let answer = solve_part2(&input);
-        assert_eq!(answer, 281);
+
+        assert_eq!(solve_part2(&input), 281);
     }
 }
