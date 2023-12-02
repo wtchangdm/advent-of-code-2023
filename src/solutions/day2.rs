@@ -15,54 +15,70 @@ struct Game {
 }
 
 impl Game {
-    fn is_candidate(&self) -> bool {
+    fn from(line: &str) -> Game {
+        let split: Vec<&str> = line.split(": ").collect();
+        let game_id = String::from(split[0]).replace("Game ", "");
+        let mut game = Game {
+            id: game_id.parse().unwrap(),
+            rounds: vec![],
+        };
+
+        for round in split[1].split("; ").collect::<Vec<&str>>() {
+            let mut r = Round {
+                red: 0,
+                green: 0,
+                blue: 0,
+            };
+            let packages: Vec<&str> = round.split(", ").collect();
+
+            for package in packages {
+                let detail: Vec<&str> = package.split(' ').collect();
+
+                let num: u32 = detail[0].parse().unwrap();
+                let color = detail[1];
+
+                match color {
+                    "red" => r.red += num,
+                    "green" => r.green += num,
+                    "blue" => r.blue += num,
+                    _ => panic!("how is this possible?"),
+                }
+            }
+
+            game.rounds.push(r);
+        }
+
+        game
+    }
+
+    fn within_limits(&self) -> bool {
         self.rounds
             .iter()
             .all(|r| r.red <= RED_LIMIT && r.green <= GREEN_LIMIT && r.blue <= BLUE_LIMIT)
     }
-}
 
-fn parse_game(line: &str) -> Game {
-    let split: Vec<&str> = line.split(": ").collect();
-    let game_id = String::from(split[0]).replace("Game ", "");
-    let mut game = Game {
-        id: game_id.parse().unwrap(),
-        rounds: vec![],
-    };
-
-    for round in split[1].split("; ").collect::<Vec<&str>>() {
-        let mut r = Round {
-            red: 0,
-            green: 0,
-            blue: 0,
-        };
-        let packages: Vec<&str> = round.split(", ").collect();
-
-        for package in packages {
-            let detail: Vec<&str> = package.split(' ').collect();
-
-            let num: u32 = detail[0].parse().unwrap();
-            let color = detail[1];
-
-            match color {
-                "red" => r.red += num,
-                "green" => r.green += num,
-                "blue" => r.blue += num,
-                _ => panic!("how is this possible?"),
-            }
-        }
-
-        game.rounds.push(r);
+    fn max_colors(&self) -> Round {
+        self.rounds.iter().fold(
+            Round {
+                red: 0,
+                green: 0,
+                blue: 0,
+            },
+            |mut acc, r| {
+                acc.red = acc.red.max(r.red);
+                acc.green = acc.green.max(r.green);
+                acc.blue = acc.blue.max(r.blue);
+                acc
+            },
+        )
     }
-
-    game
 }
 
 pub fn solve_part1(input: &[String]) -> u32 {
     input
         .iter()
-        .map(|line| parse_game(line))
-        .filter(|game| game.is_candidate())
+        .map(|line| Game::from(line))
+        .filter(|game| game.within_limits())
         .map(|game| game.id)
         .sum()
 }
@@ -70,21 +86,8 @@ pub fn solve_part1(input: &[String]) -> u32 {
 pub fn solve_part2(input: &[String]) -> u32 {
     input
         .iter()
-        .map(|line| {
-            parse_game(line).rounds.iter().fold(
-                Round {
-                    red: 0,
-                    green: 0,
-                    blue: 0,
-                },
-                |mut acc, r| {
-                    acc.red = acc.red.max(r.red);
-                    acc.green = acc.green.max(r.green);
-                    acc.blue = acc.blue.max(r.blue);
-                    acc
-                },
-            )
-        })
+        .map(|line| Game::from(line))
+        .map(|game| game.max_colors())
         .map(|r| r.red * r.green * r.blue)
         .sum()
 }
