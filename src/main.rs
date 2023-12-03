@@ -2,10 +2,11 @@
 mod solutions;
 use solutions::*;
 
+use std::fmt::Display;
 use std::fs::File;
 use std::io::{self, BufRead};
 
-struct Puzzle<T> {
+struct Puzzle<T: Display> {
     name: String,
     input: String,
     func: fn(input: &[String]) -> T,
