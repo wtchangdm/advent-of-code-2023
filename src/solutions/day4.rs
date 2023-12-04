@@ -3,8 +3,7 @@ use std::collections::{HashMap, HashSet, VecDeque};
 #[derive(Debug)]
 struct Card {
     id: u32,
-    winning: HashSet<u32>,
-    owned: HashSet<u32>,
+    won_copies: u32,
 }
 
 fn parse_numbers(s: &str) -> HashSet<u32> {
@@ -20,19 +19,20 @@ impl Card {
         let numbers: Vec<&str> = split[1].split(" | ").collect();
         let winning: HashSet<u32> = parse_numbers(numbers[0]);
         let owned: HashSet<u32> = parse_numbers(numbers[1]);
+        let won_copies = winning.intersection(&owned).count() as u32;
 
-        Self { id, winning, owned }
+        Self { id, won_copies }
     }
 
     fn points(&self) -> u32 {
         match self.won_copies().checked_sub(1) {
             None => 0, // negative, like -1
-            Some(v) => 2_u32.pow(v as u32),
+            Some(v) => 2_u32.pow(v),
         }
     }
 
-    fn won_copies(&self) -> usize {
-        self.winning.intersection(&self.owned).count()
+    fn won_copies(&self) -> u32 {
+        self.won_copies
     }
 }
 
@@ -46,7 +46,7 @@ pub fn solve_part1(input: &[String]) -> u32 {
 
 pub fn solve_part2(input: &[String]) -> u32 {
     let mut count: HashMap<u32, u32> = HashMap::new();
-    let mut copies: HashMap<u32, usize> = HashMap::new();
+    let mut copies: HashMap<u32, u32> = HashMap::new();
     let mut queue: VecDeque<u32> = VecDeque::new();
 
     input.iter().map(|line| Card::from(line)).for_each(|card| {
@@ -54,7 +54,7 @@ pub fn solve_part2(input: &[String]) -> u32 {
         copies.entry(card.id).or_insert(card.won_copies());
 
         (1..=card.won_copies())
-            .map(|i| i as u32 + card.id)
+            .map(|i| i + card.id)
             .for_each(|id| queue.push_back(id));
     });
 
@@ -63,7 +63,7 @@ pub fn solve_part2(input: &[String]) -> u32 {
         *count.get_mut(&card_id).unwrap() += 1;
 
         (1..=*copies.get(&card_id).unwrap())
-            .map(|i| i as u32 + card_id)
+            .map(|i| i + card_id)
             .for_each(|id| queue.push_back(id));
     }
 
