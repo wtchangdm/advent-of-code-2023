@@ -29,6 +29,8 @@ fn main() {
         Puzzle { name: "2-2".into(), input: "./inputs/2-1.txt".into(), func: day2::solve_part2 },
         Puzzle { name: "3-1".into(), input: "./inputs/3-1.txt".into(), func: day3::solve_part1 },
         Puzzle { name: "3-2".into(), input: "./inputs/3-1.txt".into(), func: day3::solve_part2 },
+        Puzzle { name: "4-1".into(), input: "./inputs/4-1.txt".into(), func: day4::solve_part1 },
+        Puzzle { name: "4-2".into(), input: "./inputs/4-1.txt".into(), func: day4::solve_part2 },
     ];
 
     for puzzle in puzzles {
