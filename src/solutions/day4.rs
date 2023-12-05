@@ -1,4 +1,4 @@
-use std::collections::{HashMap, HashSet, VecDeque};
+use std::collections::{HashMap, HashSet};
 
 #[derive(Debug)]
 struct Card {
@@ -46,26 +46,15 @@ pub fn solve_part1(input: &[String]) -> u32 {
 
 pub fn solve_part2(input: &[String]) -> u32 {
     let mut count: HashMap<u32, u32> = HashMap::new();
-    let mut copies: HashMap<u32, u32> = HashMap::new();
-    let mut queue: VecDeque<u32> = VecDeque::new();
 
     input.iter().map(|line| Card::from(line)).for_each(|card| {
-        count.entry(card.id).or_insert(1);
-        copies.entry(card.id).or_insert(card.won_copies());
+        *count.entry(card.id).or_insert(0) += 1;
 
-        (1..=card.won_copies())
-            .map(|i| i + card.id)
-            .for_each(|id| queue.push_back(id));
+        // inspired by https://github.com/rust-tw/advent-of-code/tree/main/2023/04
+        (1..=card.won_copies()).map(|i| i + card.id).for_each(|id| {
+            *count.entry(id).or_insert(0) += *count.get(&card.id).unwrap();
+        })
     });
-
-    while !queue.is_empty() {
-        let card_id = queue.pop_front().unwrap();
-        *count.get_mut(&card_id).unwrap() += 1;
-
-        (1..=*copies.get(&card_id).unwrap())
-            .map(|i| i + card_id)
-            .for_each(|id| queue.push_back(id));
-    }
 
     count.values().sum()
 }
