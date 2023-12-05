@@ -14,11 +14,12 @@ fn parse_numbers(s: &str) -> HashSet<u32> {
 
 impl Card {
     fn from(line: &str) -> Self {
-        let split: Vec<&str> = line.split(": ").collect();
-        let id: u32 = split[0].replace("Card ", "").trim().parse().unwrap();
-        let numbers: Vec<&str> = split[1].split(" | ").collect();
-        let winning: HashSet<u32> = parse_numbers(numbers[0]);
-        let owned: HashSet<u32> = parse_numbers(numbers[1]);
+        let (meta, numbers) = line.split_once(": ").unwrap();
+        let id: u32 = meta.replace("Card ", "").trim().parse().unwrap();
+        let (winning, owned) = numbers
+            .split_once(" | ")
+            .map(|(a, b)| (parse_numbers(a), parse_numbers(b)))
+            .unwrap();
         let won_copies = winning.intersection(&owned).count() as u32;
 
         Self { id, won_copies }
