@@ -6,7 +6,7 @@ use std::fmt::Display;
 use std::fs::File;
 use std::io::{self, BufRead};
 
-struct Puzzle<T: Display> {
+struct Puzzle<T: Display + Clone> {
     name: String,
     input: String,
     func: fn(input: &[String]) -> T,
@@ -31,6 +31,10 @@ fn main() {
         Puzzle { name: "3-2".into(), input: "./inputs/3-1.txt".into(), func: day3::solve_part2 },
         Puzzle { name: "4-1".into(), input: "./inputs/4-1.txt".into(), func: day4::solve_part1 },
         Puzzle { name: "4-2".into(), input: "./inputs/4-1.txt".into(), func: day4::solve_part2 },
+        Puzzle { name: "5-1".into(), input: "./inputs/5-1.txt".into(), func: day5::solve_part1 },
+        Puzzle { name: "5-2".into(), input: "./inputs/5-1.txt".into(), func: day5::solve_part2 },
+        // Puzzle { name: "6-1".into(), input: "./inputs/6-1.txt".into(), func: day6::solve_part1 },
+        // Puzzle { name: "6-2".into(), input: "./inputs/6-1.txt".into(), func: day6::solve_part2 },
     ];
 
     for puzzle in puzzles {
