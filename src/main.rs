@@ -24,17 +24,19 @@ fn get_content(path: &str) -> Vec<String> {
 fn main() {
     let puzzles = vec![
         Puzzle { name: "1-1".into(), input: "./inputs/1-1.txt".into(), func: day1::solve_part1 },
-        Puzzle { name: "1-2".into(), input: "./inputs/1-1.txt".into(), func: day1::solve_part2 },
-        Puzzle { name: "2-1".into(), input: "./inputs/2-1.txt".into(), func: day2::solve_part1 },
-        Puzzle { name: "2-2".into(), input: "./inputs/2-1.txt".into(), func: day2::solve_part2 },
-        Puzzle { name: "3-1".into(), input: "./inputs/3-1.txt".into(), func: day3::solve_part1 },
-        Puzzle { name: "3-2".into(), input: "./inputs/3-1.txt".into(), func: day3::solve_part2 },
-        Puzzle { name: "4-1".into(), input: "./inputs/4-1.txt".into(), func: day4::solve_part1 },
-        Puzzle { name: "4-2".into(), input: "./inputs/4-1.txt".into(), func: day4::solve_part2 },
-        Puzzle { name: "5-1".into(), input: "./inputs/5-1.txt".into(), func: day5::solve_part1 },
-        Puzzle { name: "5-2".into(), input: "./inputs/5-1.txt".into(), func: day5::solve_part2 },
+        // Puzzle { name: "1-2".into(), input: "./inputs/1-1.txt".into(), func: day1::solve_part2 },
+        // Puzzle { name: "2-1".into(), input: "./inputs/2-1.txt".into(), func: day2::solve_part1 },
+        // Puzzle { name: "2-2".into(), input: "./inputs/2-1.txt".into(), func: day2::solve_part2 },
+        // Puzzle { name: "3-1".into(), input: "./inputs/3-1.txt".into(), func: day3::solve_part1 },
+        // Puzzle { name: "3-2".into(), input: "./inputs/3-1.txt".into(), func: day3::solve_part2 },
+        // Puzzle { name: "4-1".into(), input: "./inputs/4-1.txt".into(), func: day4::solve_part1 },
+        // Puzzle { name: "4-2".into(), input: "./inputs/4-1.txt".into(), func: day4::solve_part2 },
+        // Puzzle { name: "5-1".into(), input: "./inputs/5-1.txt".into(), func: day5::solve_part1 },
+        // Puzzle { name: "5-2".into(), input: "./inputs/5-1.txt".into(), func: day5::solve_part2 },
         // Puzzle { name: "6-1".into(), input: "./inputs/6-1.txt".into(), func: day6::solve_part1 },
         // Puzzle { name: "6-2".into(), input: "./inputs/6-1.txt".into(), func: day6::solve_part2 },
+        // Puzzle { name: "7-1".into(), input: "./inputs/7-1.txt".into(), func: day7::solve_part1 },
+        // Puzzle { name: "7-2".into(), input: "./inputs/7-1.txt".into(), func: day7::solve_part2 },
     ];
 
     for puzzle in puzzles {
