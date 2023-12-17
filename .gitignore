@@ -13,8 +13,5 @@ Cargo.lock
 # MSVC Windows builds of rustc generate these, which store debugging information
 *.pdb
 
-# only update after end of month
-inputs
-
 # vscode stuff
 .vscode
