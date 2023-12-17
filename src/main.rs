@@ -24,7 +24,7 @@ fn main() {
     println!("Answer of 4-1 is: {}", day4::solve_part1(&get_content("./inputs/4-1.txt")));
     println!("Answer of 4-2 is: {}", day4::solve_part2(&get_content("./inputs/4-1.txt")));
     println!("Answer of 5-1 is: {}", day5::solve_part1(&get_content("./inputs/5-1.txt")));
-    println!("Answer of 5-2 is: {}", day5::solve_part2(&get_content("./inputs/5-1.txt")));
+    // println!("Answer of 5-2 is: {}", day5::solve_part2(&get_content("./inputs/5-1.txt")));
     println!("Answer of 6-1 is: {}", day6::solve_part1(&get_content("./inputs/6-1.txt")));
     println!("Answer of 6-2 is: {}", day6::solve_part2(&get_content("./inputs/6-1.txt")));
     println!("Answer of 7-1 is: {}", day7::solve_part1(&get_content("./inputs/7-1.txt")));
