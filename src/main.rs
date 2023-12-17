@@ -2,15 +2,8 @@
 mod solutions;
 use solutions::*;
 
-use std::fmt::Display;
 use std::fs::File;
 use std::io::{self, BufRead};
-
-struct Puzzle<T: Display + Clone> {
-    name: String,
-    input: String,
-    func: fn(input: &[String]) -> T,
-}
 
 fn get_content(path: &str) -> Vec<String> {
     let file = File::open(path).unwrap_or_else(|_| panic!("can't open file: {}", path));
@@ -22,30 +15,18 @@ fn get_content(path: &str) -> Vec<String> {
 }
 
 fn main() {
-    let puzzles = vec![
-        Puzzle { name: "1-1".into(), input: "./inputs/1-1.txt".into(), func: day1::solve_part1 },
-        // Puzzle { name: "1-2".into(), input: "./inputs/1-1.txt".into(), func: day1::solve_part2 },
-        // Puzzle { name: "2-1".into(), input: "./inputs/2-1.txt".into(), func: day2::solve_part1 },
-        // Puzzle { name: "2-2".into(), input: "./inputs/2-1.txt".into(), func: day2::solve_part2 },
-        // Puzzle { name: "3-1".into(), input: "./inputs/3-1.txt".into(), func: day3::solve_part1 },
-        // Puzzle { name: "3-2".into(), input: "./inputs/3-1.txt".into(), func: day3::solve_part2 },
-        // Puzzle { name: "4-1".into(), input: "./inputs/4-1.txt".into(), func: day4::solve_part1 },
-        // Puzzle { name: "4-2".into(), input: "./inputs/4-1.txt".into(), func: day4::solve_part2 },
-        // Puzzle { name: "5-1".into(), input: "./inputs/5-1.txt".into(), func: day5::solve_part1 },
-        // Puzzle { name: "5-2".into(), input: "./inputs/5-1.txt".into(), func: day5::solve_part2 },
-        // Puzzle { name: "6-1".into(), input: "./inputs/6-1.txt".into(), func: day6::solve_part1 },
-        // Puzzle { name: "6-2".into(), input: "./inputs/6-1.txt".into(), func: day6::solve_part2 },
-        // Puzzle { name: "7-1".into(), input: "./inputs/7-1.txt".into(), func: day7::solve_part1 },
-        // Puzzle { name: "7-2".into(), input: "./inputs/7-1.txt".into(), func: day7::solve_part2 },
-    ];
-
-    for puzzle in puzzles {
-        let content = get_content(&puzzle.input);
-        println!(
-            "Answer of {} ({}) is: {}",
-            puzzle.name,
-            puzzle.input,
-            (puzzle.func)(&content)
-        );
-    }
+    println!("Answer of 1-1 is: {}", day1::solve_part1(&get_content("./inputs/1-1.txt")));
+    println!("Answer of 1-2 is: {}", day1::solve_part2(&get_content("./inputs/1-1.txt")));
+    println!("Answer of 2-1 is: {}", day2::solve_part1(&get_content("./inputs/2-1.txt")));
+    println!("Answer of 2-2 is: {}", day2::solve_part2(&get_content("./inputs/2-1.txt")));
+    println!("Answer of 3-1 is: {}", day3::solve_part1(&get_content("./inputs/3-1.txt")));
+    println!("Answer of 3-2 is: {}", day3::solve_part2(&get_content("./inputs/3-1.txt")));
+    println!("Answer of 4-1 is: {}", day4::solve_part1(&get_content("./inputs/4-1.txt")));
+    println!("Answer of 4-2 is: {}", day4::solve_part2(&get_content("./inputs/4-1.txt")));
+    println!("Answer of 5-1 is: {}", day5::solve_part1(&get_content("./inputs/5-1.txt")));
+    println!("Answer of 5-2 is: {}", day5::solve_part2(&get_content("./inputs/5-1.txt")));
+    println!("Answer of 6-1 is: {}", day6::solve_part1(&get_content("./inputs/6-1.txt")));
+    println!("Answer of 6-2 is: {}", day6::solve_part2(&get_content("./inputs/6-1.txt")));
+    println!("Answer of 7-1 is: {}", day7::solve_part1(&get_content("./inputs/7-1.txt")));
+    println!("Answer of 7-2 is: {}", day7::solve_part2(&get_content("./inputs/7-1.txt")));
 }
