@@ -12,7 +12,9 @@ where
     let mut file = File::open(input_path).unwrap_or_else(|_| panic!("can't open file: {}", input_path));
     let mut content = String::new();
     file.read_to_string(&mut content).unwrap();
+
     let lines = content.lines().collect::<Vec<&str>>();
+
     println!("Answer of {} is: {}", puzzle_id, func(&lines));
 }
 

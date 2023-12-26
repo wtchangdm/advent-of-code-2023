@@ -1,5 +1,4 @@
 // revised per https://github.com/rust-tw/advent-of-code/pull/86
-
 use std::{cmp::Ordering, collections::HashMap};
 
 type Label = u8;
