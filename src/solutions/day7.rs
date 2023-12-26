@@ -145,7 +145,7 @@ impl Ord for Hand {
 
 impl Eq for Hand {}
 
-pub fn solve_part1(input: &[String]) -> u32 {
+pub fn solve_part1(input: &[&str]) -> u32 {
     let mut hands: Vec<_> = input.iter().map(|line| Hand::from(line, false)).collect();
     hands.sort();
 
@@ -156,7 +156,7 @@ pub fn solve_part1(input: &[String]) -> u32 {
         .sum()
 }
 
-pub fn solve_part2(input: &[String]) -> u32 {
+pub fn solve_part2(input: &[&str]) -> u32 {
     let mut hands: Vec<_> = input.iter().map(|line| Hand::from(line, true)).collect();
     hands.sort();
 
@@ -173,33 +173,25 @@ mod tests {
 
     #[test]
     fn test_part1() {
-        let input: Vec<String> = [
+        let input = [
             "32T3K 765",
             "T55J5 684",
             "KK677 28",
             "KTJJT 220",
             "QQQJA 483",
-        ]
-        .iter()
-        .map(|x| x.to_string())
-        .collect();
-
+        ];
         assert_eq!(solve_part1(&input), 6440);
     }
 
     #[test]
     fn test_part2() {
-        let input: Vec<String> = [
+        let input = [
             "32T3K 765",
             "T55J5 684",
             "KK677 28",
             "KTJJT 220",
             "QQQJA 483",
-        ]
-        .iter()
-        .map(|x| x.to_string())
-        .collect();
-
+        ];
         assert_eq!(solve_part2(&input), 5905);
     }
 }

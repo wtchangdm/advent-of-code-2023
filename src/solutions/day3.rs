@@ -50,7 +50,7 @@ fn get_nearby_symbols(m: &[Vec<char>], p: &Point) -> Vec<(Symbol, Point)> {
 }
 
 impl Schematic {
-    fn from(input: &[String]) -> Self {
+    fn from(input: &[&str]) -> Self {
         let mut schematic = Self {
             symbol_map: HashMap::new(),
             parts_nearby_symbols: vec![],
@@ -128,11 +128,11 @@ impl Schematic {
     }
 }
 
-pub fn solve_part1(input: &[String]) -> u32 {
+pub fn solve_part1(input: &[&str]) -> u32 {
     Schematic::from(input).parts_nearby_symbols.iter().sum()
 }
 
-pub fn solve_part2(input: &[String]) -> u32 {
+pub fn solve_part2(input: &[&str]) -> u32 {
     Schematic::from(input)
         .symbol_map
         .get_key_value(&'*')
@@ -150,7 +150,7 @@ mod tests {
 
     #[test]
     fn test_part1() {
-        let input: Vec<String> = [
+        let input = [
             "467..114..",
             "...*......",
             "..35..633.",
@@ -161,17 +161,15 @@ mod tests {
             "......755.",
             "...$.*....",
             ".664.598..",
-        ]
-        .iter()
-        .map(|x| x.to_string())
-        .collect();
+        ];
+
 
         assert_eq!(solve_part1(&input), 4361);
     }
 
     #[test]
     fn test_part2() {
-        let input: Vec<String> = [
+        let input = [
             "467..114..",
             "...*......",
             "..35..633.",
@@ -182,10 +180,8 @@ mod tests {
             "......755.",
             "...$.*....",
             ".664.598..",
-        ]
-        .iter()
-        .map(|x| x.to_string())
-        .collect();
+        ];
+
 
         assert_eq!(solve_part2(&input), 467835);
     }

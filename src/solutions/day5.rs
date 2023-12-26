@@ -7,7 +7,7 @@ struct Almanac {
 }
 
 impl Almanac {
-    fn from(input: &[String]) -> Almanac {
+    fn from(input: &[&str]) -> Almanac {
         let mut resources: Vec<Vec<(u64, u64, u64)>> = vec![];
         let mut i = input.iter();
         let seeds: Vec<u64> = (i.next().unwrap())
@@ -75,13 +75,13 @@ impl Almanac {
     }
 }
 
-pub fn solve_part1(input: &[String]) -> u64 {
+pub fn solve_part1(input: &[&str]) -> u64 {
     let alamanac = Almanac::from(input);
 
     alamanac.find_lowest_location()
 }
 
-pub fn solve_part2(input: &[String]) -> u64 {
+pub fn solve_part2(input: &[&str]) -> u64 {
     let alamanac = Almanac::from(input);
     let seeds = alamanac.seeds();
     let expanded_seeds: Vec<u64> = seeds
@@ -100,7 +100,7 @@ mod tests {
 
     #[test]
     fn test_part1() {
-        let input: Vec<String> = [
+        let input = [
             "seeds: 79 14 55 13",
             "",
             "seed-to-soil map:",
@@ -134,17 +134,14 @@ mod tests {
             "humidity-to-location map:",
             "60 56 37",
             "56 93 4",
-        ]
-        .iter()
-        .map(|x| x.to_string())
-        .collect();
+        ];
 
         assert_eq!(solve_part1(&input), 35);
     }
 
     #[test]
     fn test_part2() {
-        let input: Vec<String> = [
+        let input = [
             "seeds: 79 14 55 13",
             "",
             "seed-to-soil map:",
@@ -178,10 +175,7 @@ mod tests {
             "humidity-to-location map:",
             "60 56 37",
             "56 93 4",
-        ]
-        .iter()
-        .map(|x| x.to_string())
-        .collect();
+        ];
 
         assert_eq!(solve_part2(&input), 46);
     }

@@ -34,13 +34,13 @@ fn solve(durations: Vec<u64>, records: Vec<u64>) -> u64 {
         .product()
 }
 
-pub fn solve_part1(input: &[String]) -> u64 {
+pub fn solve_part1(input: &[&str]) -> u64 {
     let (durations, records) = (parse(&input[0]), parse(&input[1]));
 
     solve(durations, records)
 }
 
-pub fn solve_part2(input: &[String]) -> u64 {
+pub fn solve_part2(input: &[&str]) -> u64 {
     let (duration, record) = (parse_one(&input[0]), parse_one(&input[1]));
 
     solve(vec![duration], vec![record])
@@ -52,21 +52,15 @@ mod tests {
 
     #[test]
     fn test_part1() {
-        let input: Vec<String> = ["Time:      7  15   30", "Distance:  9  40  200"]
-            .iter()
-            .map(|x| x.to_string())
-            .collect();
+        let input = ["Time:      7  15   30", "Distance:  9  40  200"];
 
         assert_eq!(solve_part1(&input), 288);
     }
 
     #[test]
     fn test_part2() {
-        let input: Vec<String> = ["Time:      7  15   30", "Distance:  9  40  200"]
-            .iter()
-            .map(|x| x.to_string())
-            .collect();
+        let input = ["Time:      7  15   30", "Distance:  9  40  200"]
 
-        assert_eq!(solve_part2(&input), 71503);
+;        assert_eq!(solve_part2(&input), 71503);
     }
 }

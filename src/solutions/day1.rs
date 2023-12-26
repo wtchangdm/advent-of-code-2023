@@ -29,11 +29,11 @@ fn get_number(line: &str) -> u32 {
     format!("{}{}", first, last).parse().unwrap()
 }
 
-pub fn solve_part1(input: &[String]) -> u32 {
+pub fn solve_part1(input: &[&str]) -> u32 {
     input.iter().map(|s| get_number(s)).sum()
 }
 
-pub fn solve_part2(input: &[String]) -> u32 {
+pub fn solve_part2(input: &[&str]) -> u32 {
     input
         .iter()
         .map(|s| transform_words_to_digits(s))
@@ -47,17 +47,14 @@ mod tests {
 
     #[test]
     fn test_part1() {
-        let input: Vec<String> = ["1abc2", "pqr3stu8vwx", "a1b2c3d4e5f", "treb7uchet"]
-            .iter()
-            .map(|x| x.to_string())
-            .collect();
+        let input = ["1abc2", "pqr3stu8vwx", "a1b2c3d4e5f", "treb7uchet"];
 
         assert_eq!(solve_part1(&input), 142);
     }
 
     #[test]
     fn test_part2() {
-        let input: Vec<String> = [
+        let input = [
             "two1nine",
             "eightwothree",
             "abcone2threexyz",
@@ -65,10 +62,7 @@ mod tests {
             "4nineeightseven2",
             "zoneight234",
             "7pqrstsixteen",
-        ]
-        .iter()
-        .map(|x| x.to_string())
-        .collect();
+        ];
 
         assert_eq!(solve_part2(&input), 281);
     }
