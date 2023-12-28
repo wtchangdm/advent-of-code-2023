@@ -35,13 +35,13 @@ fn solve(durations: Vec<u64>, records: Vec<u64>) -> u64 {
 }
 
 pub fn solve_part1(input: &[&str]) -> u64 {
-    let (durations, records) = (parse(&input[0]), parse(&input[1]));
+    let (durations, records) = (parse(input[0]), parse(input[1]));
 
     solve(durations, records)
 }
 
 pub fn solve_part2(input: &[&str]) -> u64 {
-    let (duration, record) = (parse_one(&input[0]), parse_one(&input[1]));
+    let (duration, record) = (parse_one(input[0]), parse_one(input[1]));
 
     solve(vec![duration], vec![record])
 }

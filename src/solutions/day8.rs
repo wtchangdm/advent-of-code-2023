@@ -24,7 +24,7 @@ struct Map {
 }
 
 impl Map {
-    fn new(input: &[&str]) -> Self {
+    fn from(input: &[&str]) -> Self {
         let mut nodes = HashMap::new();
         let mut iter = input.iter();
         let directions: Vec<Direction> = iter.next().unwrap().chars().map(Into::into).collect();
@@ -64,7 +64,7 @@ impl Map {
 }
 
 pub fn solve_part1(input: &[&str]) -> u64 {
-    let mut map = Map::new(input);
+    let mut map = Map::from(input);
     let mut current = "AAA".to_string();
 
     while current != "ZZZ" {
@@ -78,7 +78,7 @@ pub fn solve_part1(input: &[&str]) -> u64 {
 }
 
 pub fn solve_part2(input: &[&str]) -> u64 {
-    let mut map = Map::new(input);
+    let mut map = Map::from(input);
     let mut starting_nodes: Vec<String> = map
         .nodes
         .keys()
