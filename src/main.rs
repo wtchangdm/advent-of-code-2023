@@ -1,7 +1,6 @@
 #[allow(dead_code)]
 mod solutions;
 use std::{fmt::Display, fs::File, io::Read};
-
 use solutions::*;
 
 fn solve<T, F>(puzzle_id: &str, input_path: &str, func: F)
