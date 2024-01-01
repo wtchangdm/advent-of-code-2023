@@ -36,4 +36,6 @@ fn main() {
     solve("8-2", "./inputs/8-1.txt", day8::solve_part2);
     solve("9-1", "./inputs/9-1.txt", day9::solve_part1);
     solve("9-2", "./inputs/9-1.txt", day9::solve_part2);
+    solve("10-1", "./inputs/10-1.txt", day10::solve_part1);
+    // solve("10-2", "./inputs/10-1.txt", day10::solve_part2);
 }
