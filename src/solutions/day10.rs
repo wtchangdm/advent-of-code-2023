@@ -141,21 +141,16 @@ impl Grid {
         }
     }
 
-    fn traverse(
-        &mut self,
-        current_point: Point,
-        prev: Direction,
-        visited: &mut HashSet<Point>,
-    ) -> bool {
-        let (row, col) = current_point;
+    fn traverse(&mut self, current: Point, prev: Direction, visited: &mut HashSet<Point>) -> bool {
+        let (row, col) = current;
         let current_tile = self.layout[row][col];
 
-        if visited.contains(&current_point) {
+        if visited.contains(&current) {
             return false;
         }
 
-        visited.insert(current_point);
-        self.traces.push(current_point);
+        visited.insert(current);
+        self.traces.push(current);
 
         for direction in [Up, Down, Right, Left] {
             if direction == prev.opposite() {
@@ -179,9 +174,9 @@ impl Grid {
             }
 
             let next_tile = self.layout[next_row][next_col];
-            let next_point = (next_row, next_col);
+            let next = (next_row, next_col);
 
-            if next_point == self.start {
+            if next == self.start {
                 return true;
             }
 
@@ -189,12 +184,12 @@ impl Grid {
                 continue;
             }
 
-            if self.traverse(next_point, direction, visited) {
+            if self.traverse(next, direction, visited) {
                 return true;
             }
         }
 
-        visited.remove(&current_point);
+        visited.remove(&current);
         self.traces.pop();
 
         false
