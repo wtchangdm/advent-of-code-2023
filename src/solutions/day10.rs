@@ -157,10 +157,11 @@ impl Grid {
         visited.insert(current_point);
         self.traces.push(current_point);
 
-        for direction in [Up, Down, Right, Left]
-            .iter()
-            .filter(|&d| *d != prev.opposite())
-        {
+        for direction in [Up, Down, Right, Left] {
+            if direction == prev.opposite() {
+                continue;
+            }
+
             let offset = direction.get_offset();
 
             let next_row = match row.checked_add_signed(offset.0) {
@@ -184,11 +185,11 @@ impl Grid {
                 return true;
             }
 
-            if !current_tile.can_connect(*direction, next_tile) {
+            if !current_tile.can_connect(direction, next_tile) {
                 continue;
             }
 
-            if self.traverse(next_point, *direction, visited) {
+            if self.traverse(next_point, direction, visited) {
                 return true;
             }
         }
