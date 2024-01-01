@@ -93,19 +93,6 @@ impl Tile {
             _ => false,
         }
     }
-
-    fn say(&self) -> char {
-        match self {
-            PipeNorthSouth => '|',
-            PipeWestEast => '-',
-            PipeNorthEast => 'L',
-            PipeNorthWest => 'J',
-            PipeSouthEast => 'F',
-            PipeSouthWest => '7',
-            Ground => '.',
-            Start => 'S',
-        }
-    }
 }
 
 struct Grid {
