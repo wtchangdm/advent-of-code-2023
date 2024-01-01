@@ -144,14 +144,14 @@ impl Grid {
                 continue;
             }
 
-            let offset = direction.get_offset();
+            let (offset_row, offset_col) = direction.get_offset();
 
-            let next_row = match row.checked_add_signed(offset.0) {
+            let next_row = match row.checked_add_signed(offset_row) {
                 Some(v) => v,
                 None => continue,
             };
 
-            let next_col = match col.checked_add_signed(offset.1) {
+            let next_col = match col.checked_add_signed(offset_col) {
                 Some(v) => v,
                 None => continue,
             };
